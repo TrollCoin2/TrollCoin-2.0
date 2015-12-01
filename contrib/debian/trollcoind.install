@@ -1,0 +1,2 @@
+debian/bin/trollcoind usr/bin
+src/trollcoind usr/lib/trollcoin

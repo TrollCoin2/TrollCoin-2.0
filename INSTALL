@@ -1,0 +1,9 @@
+Building TrollCoin
+
+See doc/readme-qt.rst for instructions on building TrollCoin QT,
+the intended-for-end-users, nice-graphical-interface, reference
+implementation of TrollCoin.
+
+See doc/build-*.txt for instructions on building trollcoind,
+the intended-for-services, no-graphical-interface, reference
+implementation of TrollCoin.
