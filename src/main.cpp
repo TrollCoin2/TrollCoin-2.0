@@ -969,76 +969,154 @@ static CBigNum GetProofOfStakeLimit(int nHeight)
 // miner's coin base reward
 int64_t GetProofOfWorkReward(int64_t nFees)
 {
-    if (pindexBest->nHeight == 0) {
-        int64_t nSubsidy = 500000000 * COIN; // TROLL for Swap from TrollCoin v1.*
-        LogPrint("creation", "GetProofOfWorkReward() : create=%s nSubsidy=%d\n", FormatMoney(nSubsidy), nSubsidy);
-        return nSubsidy + nFees;
-    }
-    else if (pindexBest->nHeight >= 1 && pindexBest->nHeight <= 777776)
+    if (pindexBest->nHeight < FORK_HEIGHT)
     {
-        int64_t nSubsidy = 125 * COIN;
-        LogPrint("creation", "GetProofOfWorkReward() : create=%s nSubsidy=%d\n", FormatMoney(nSubsidy), nSubsidy);
-        return nSubsidy + nFees;
+        if (pindexBest->nHeight == 0) {
+            int64_t nSubsidy = 500000000 * COIN; // TROLL for Swap from TrollCoin v1.*
+            LogPrint("creation", "GetProofOfWorkReward() : create=%s nSubsidy=%d\n", FormatMoney(nSubsidy), nSubsidy);
+            return nSubsidy + nFees;
+        }
+        else if (pindexBest->nHeight >= 1 && pindexBest->nHeight <= 777776)
+        {
+            int64_t nSubsidy = 125 * COIN;
+            LogPrint("creation", "GetProofOfWorkReward() : create=%s nSubsidy=%d\n", FormatMoney(nSubsidy), nSubsidy);
+            return nSubsidy + nFees;
+        }
+        else if (pindexBest->nHeight >= 777777 && pindexBest->nHeight <= 1555553)
+        {
+            int64_t nSubsidy = 60 * COIN;
+            LogPrint("creation", "GetProofOfWorkReward() : create=%s nSubsidy=%d\n", FormatMoney(nSubsidy), nSubsidy);
+            return nSubsidy + nFees;
+        }
+        else if (pindexBest->nHeight >= 1555554 && pindexBest->nHeight <= 2333330)
+        {
+            int64_t nSubsidy = 34 * COIN;
+            LogPrint("creation", "GetProofOfWorkReward() : create=%s nSubsidy=%d\n", FormatMoney(nSubsidy), nSubsidy);
+            return nSubsidy + nFees;
+        }
+        else if (pindexBest->nHeight >= 2333331 && pindexBest->nHeight <= 3111107)
+        {
+            int64_t nSubsidy = 20 * COIN;
+            LogPrint("creation", "GetProofOfWorkReward() : create=%s nSubsidy=%d\n", FormatMoney(nSubsidy), nSubsidy);
+            return nSubsidy + nFees;
+        }
+        else if (pindexBest->nHeight >= 3111108 && pindexBest->nHeight <= 3888884)
+        {
+            int64_t nSubsidy = 17 * COIN;
+            LogPrint("creation", "GetProofOfWorkReward() : create=%s nSubsidy=%d\n", FormatMoney(nSubsidy), nSubsidy);
+            return nSubsidy + nFees;
+        }
+        else if (pindexBest->nHeight >= 3888885 && pindexBest->nHeight <= 4666662)
+        {
+            int64_t nSubsidy = 15 * COIN;
+            LogPrint("creation", "GetProofOfWorkReward() : create=%s nSubsidy=%d\n", FormatMoney(nSubsidy), nSubsidy);
+            return nSubsidy + nFees;
+        }
+        else if (pindexBest->nHeight >= 4666662 && pindexBest->nHeight <= 5444438)
+        {
+            int64_t nSubsidy = 12 * COIN;
+            LogPrint("creation", "GetProofOfWorkReward() : create=%s nSubsidy=%d\n", FormatMoney(nSubsidy), nSubsidy);
+            return nSubsidy + nFees;
+        }
+        else if (pindexBest->nHeight >= 5444439 && pindexBest->nHeight <= 6222215)
+        {
+            int64_t nSubsidy = 10 * COIN;
+            LogPrint("creation", "GetProofOfWorkReward() : create=%s nSubsidy=%d\n", FormatMoney(nSubsidy), nSubsidy);
+            return nSubsidy + nFees;
+        }
+        else if (pindexBest->nHeight >= 6222216 && pindexBest->nHeight <= 6999992)
+        {
+            int64_t nSubsidy = 8 * COIN;
+            LogPrint("creation", "GetProofOfWorkReward() : create=%s nSubsidy=%d\n", FormatMoney(nSubsidy), nSubsidy);
+            return nSubsidy + nFees;
+        }
+        else if (pindexBest->nHeight >= 6999993 && pindexBest->nHeight <= 7777778)
+        {
+            int64_t nSubsidy = 7 * COIN;
+            LogPrint("creation", "GetProofOfWorkReward() : create=%s nSubsidy=%d\n", FormatMoney(nSubsidy), nSubsidy);
+            return nSubsidy + nFees;
+        }
+        else
+        {
+            int64_t nSubsidy = 125 * COIN;
+            LogPrint("creation", "GetProofOfWorkReward() : create=%s nSubsidy=%d\n", FormatMoney(nSubsidy), nSubsidy);
+            return nSubsidy + nFees;
+        }
     }
-    else if (pindexBest->nHeight >= 777777 && pindexBest->nHeight <= 1555553)
+else
+    if (pindexBest->nHeight >= FORK_HEIGHT)
     {
-        int64_t nSubsidy = 60 * COIN;
-        LogPrint("creation", "GetProofOfWorkReward() : create=%s nSubsidy=%d\n", FormatMoney(nSubsidy), nSubsidy);
-        return nSubsidy + nFees;
-    }
-    else if (pindexBest->nHeight >= 1555554 && pindexBest->nHeight <= 2333330)
-    {
-        int64_t nSubsidy = 34 * COIN;
-        LogPrint("creation", "GetProofOfWorkReward() : create=%s nSubsidy=%d\n", FormatMoney(nSubsidy), nSubsidy);
-        return nSubsidy + nFees;
-    }
-    else if (pindexBest->nHeight >= 2333331 && pindexBest->nHeight <= 3111107)
-    {
-        int64_t nSubsidy = 20 * COIN;
-        LogPrint("creation", "GetProofOfWorkReward() : create=%s nSubsidy=%d\n", FormatMoney(nSubsidy), nSubsidy);
-        return nSubsidy + nFees;
-    }
-    else if (pindexBest->nHeight >= 3111108 && pindexBest->nHeight <= 3888884)
-    {
-        int64_t nSubsidy = 17 * COIN;
-        LogPrint("creation", "GetProofOfWorkReward() : create=%s nSubsidy=%d\n", FormatMoney(nSubsidy), nSubsidy);
-        return nSubsidy + nFees;
-    }
-    else if (pindexBest->nHeight >= 3888885 && pindexBest->nHeight <= 4666662)
-    {
-        int64_t nSubsidy = 15 * COIN;
-        LogPrint("creation", "GetProofOfWorkReward() : create=%s nSubsidy=%d\n", FormatMoney(nSubsidy), nSubsidy);
-        return nSubsidy + nFees;
-    }
-    else if (pindexBest->nHeight >= 4666662 && pindexBest->nHeight <= 5444438)
-    {
-        int64_t nSubsidy = 12 * COIN;
-        LogPrint("creation", "GetProofOfWorkReward() : create=%s nSubsidy=%d\n", FormatMoney(nSubsidy), nSubsidy);
-        return nSubsidy + nFees;
-    }
-    else if (pindexBest->nHeight >= 5444439 && pindexBest->nHeight <= 6222215)
-    {
-        int64_t nSubsidy = 10 * COIN;
-        LogPrint("creation", "GetProofOfWorkReward() : create=%s nSubsidy=%d\n", FormatMoney(nSubsidy), nSubsidy);
-        return nSubsidy + nFees;
-    }
-    else if (pindexBest->nHeight >= 6222216 && pindexBest->nHeight <= 6999992)
-    {
-        int64_t nSubsidy = 8 * COIN;
-        LogPrint("creation", "GetProofOfWorkReward() : create=%s nSubsidy=%d\n", FormatMoney(nSubsidy), nSubsidy);
-        return nSubsidy + nFees;
-    }
-    else if (pindexBest->nHeight >= 6999993 && pindexBest->nHeight <= 7777778)
-    {
-        int64_t nSubsidy = 7 * COIN;
-        LogPrint("creation", "GetProofOfWorkReward() : create=%s nSubsidy=%d\n", FormatMoney(nSubsidy), nSubsidy);
-        return nSubsidy + nFees;
-    }
-    else
-    {
-        int64_t nSubsidy = 125 * COIN;
-        LogPrint("creation", "GetProofOfWorkReward() : create=%s nSubsidy=%d\n", FormatMoney(nSubsidy), nSubsidy);
-        return nSubsidy + nFees;
+        if (pindexBest->nHeight == 0) {
+            int64_t nSubsidy = 500000000 * COIN; // TROLL for Swap from TrollCoin v1.*
+            LogPrint("creation", "GetProofOfWorkReward() : create=%s nSubsidy=%d\n", FormatMoney(nSubsidy), nSubsidy);
+            return nSubsidy + nFees;
+        }
+        else if (pindexBest->nHeight >= 1 && pindexBest->nHeight <= 777776)
+        {
+            int64_t nSubsidy = 125 * COIN;
+            LogPrint("creation", "GetProofOfWorkReward() : create=%s nSubsidy=%d\n", FormatMoney(nSubsidy), nSubsidy);
+            return nSubsidy + nFees;
+        }
+        else if (pindexBest->nHeight >= 777777 && pindexBest->nHeight <= 1555553)
+        {
+            int64_t nSubsidy = 60 * COIN;
+            LogPrint("creation", "GetProofOfWorkReward() : create=%s nSubsidy=%d\n", FormatMoney(nSubsidy), nSubsidy);
+            return nSubsidy + nFees;
+        }
+        else if (pindexBest->nHeight >= 1555554 && pindexBest->nHeight <= 2333330)
+        {
+            int64_t nSubsidy = 34 * COIN;
+            LogPrint("creation", "GetProofOfWorkReward() : create=%s nSubsidy=%d\n", FormatMoney(nSubsidy), nSubsidy);
+            return nSubsidy + nFees;
+        }
+        else if (pindexBest->nHeight >= 2333331 && pindexBest->nHeight <= 3111107)
+        {
+            int64_t nSubsidy = 20 * COIN;
+            LogPrint("creation", "GetProofOfWorkReward() : create=%s nSubsidy=%d\n", FormatMoney(nSubsidy), nSubsidy);
+            return nSubsidy + nFees;
+        }
+        else if (pindexBest->nHeight >= 3111108 && pindexBest->nHeight <= 3888884)
+        {
+            int64_t nSubsidy = 17 * COIN;
+            LogPrint("creation", "GetProofOfWorkReward() : create=%s nSubsidy=%d\n", FormatMoney(nSubsidy), nSubsidy);
+            return nSubsidy + nFees;
+        }
+        else if (pindexBest->nHeight >= 3888885 && pindexBest->nHeight <= 4666662)
+        {
+            int64_t nSubsidy = 15 * COIN;
+            LogPrint("creation", "GetProofOfWorkReward() : create=%s nSubsidy=%d\n", FormatMoney(nSubsidy), nSubsidy);
+            return nSubsidy + nFees;
+        }
+        else if (pindexBest->nHeight >= 4666663 && pindexBest->nHeight <= 5444438)
+        {
+            int64_t nSubsidy = 12 * COIN;
+            LogPrint("creation", "GetProofOfWorkReward() : create=%s nSubsidy=%d\n", FormatMoney(nSubsidy), nSubsidy);
+            return nSubsidy + nFees;
+        }
+        else if (pindexBest->nHeight >= 5444439 && pindexBest->nHeight <= 6222215)
+        {
+            int64_t nSubsidy = 10 * COIN;
+            LogPrint("creation", "GetProofOfWorkReward() : create=%s nSubsidy=%d\n", FormatMoney(nSubsidy), nSubsidy);
+            return nSubsidy + nFees;
+        }
+        else if (pindexBest->nHeight >= 6222216 && pindexBest->nHeight <= 6999992)
+        {
+            int64_t nSubsidy = 8 * COIN;
+            LogPrint("creation", "GetProofOfWorkReward() : create=%s nSubsidy=%d\n", FormatMoney(nSubsidy), nSubsidy);
+            return nSubsidy + nFees;
+        }
+        else if (pindexBest->nHeight >= 6999993 && pindexBest->nHeight <= 7777778)
+        {
+            int64_t nSubsidy = 7 * COIN;
+            LogPrint("creation", "GetProofOfWorkReward() : create=%s nSubsidy=%d\n", FormatMoney(nSubsidy), nSubsidy);
+            return nSubsidy + nFees;
+        }
+        else
+        {
+            int64_t nSubsidy = 125 * COIN;
+            LogPrint("creation", "GetProofOfWorkReward() : create=%s nSubsidy=%d\n", FormatMoney(nSubsidy), nSubsidy);
+            return nSubsidy + nFees;
+        }    
     }
 }
 
@@ -2892,13 +2970,22 @@ bool static ProcessMessage(CNode* pfrom, string strCommand, CDataStream& vRecv, 
         CAddress addrFrom;
         uint64_t nNonce = 1;
         vRecv >> pfrom->nVersion >> pfrom->nServices >> nTime >> addrMe;
-        if (pfrom->nVersion < MIN_PEER_PROTO_VERSION)
+
+        if (pindexBest->nHeight < FORK_HEIGHT && pfrom->nVersion < MIN_PEER_PROTO_VERSION) 
         {
             // disconnect from peers older than this proto version
             LogPrintf("partner %s using obsolete version %i; disconnecting\n", pfrom->addr.ToString(), pfrom->nVersion);
             pfrom->fDisconnect = true;
             return false;
         }
+        else if (pindexBest->nHeight >= FORK_HEIGHT && pfrom->nVersion <= MIN_PEER_PROTO_VERSION)
+        {
+            // disconnect from peers older than this proto version
+            LogPrintf("partner %s using obsolete version %i; disconnecting\n", pfrom->addr.ToString(), pfrom->nVersion);
+            pfrom->fDisconnect = true;
+            return false;
+        }
+
 
         if (pfrom->nVersion == 10300)
             pfrom->nVersion = 300;

@@ -58,6 +58,8 @@ static const unsigned int POS_TARGET_SPACING = 1 * 64; // 64 seconds
 static const int64_t POW_DRIFT = 10 * 60; // 10 Minutes
 static const int64_t POS_DRIFT = 10 * 64; // 10 Minutes
 
+static const int64_t FORK_HEIGHT = 4600000; // Fork for reward fix
+
 inline int64_t FutureDrift(int64_t nTime, bool fProofOfStake=false) { return nTime + (fProofOfStake ? POS_DRIFT : POW_DRIFT); }
 
 extern CScript COINBASE_FLAGS;
