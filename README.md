@@ -39,6 +39,55 @@ RPC Port = 17000
 P2P Port = 25000
 RPC Port = 27000
 
+Build Instructions for RaspberryPi 3b(non B+) 
+================================================
+
+//Aug 30 2018
+
+SDFormatter - erase micro SD card
+Win32 Disk imager - ubuntu-mate-16.04.2-desktop-armhf version
+insert SD card and power on pi
+
+
+goto:
+https://github.com/TrollCoin2/TrollCoin-2.0
+click clone/download, download ZIP
+
+terminal:
+$sudo unzip TrollCoin-2.0-master.zip -d [destination]
+
+$sudo apt-get update
+
+//if firefox not working
+$sudo apt-get install qupzilla
+
+$sudo apt-get install make libqt5webkit5-dev libqt5gui5 libqt5core5a libqt5dbus5 qttools5-dev qttools5-dev-tools qtcreator libprotobuf-dev protobuf-compiler build-essential libboost-dev libboost-all-dev libboost-system-dev libboost-filesystem-dev libboost-program-options-dev libboost-thread-dev libssl-dev libdb++-dev libstdc++6 libminiupnpc-dev libevent-dev libcurl4-openssl-dev git libpng-dev qrencode libqrencode-dev
+//click yes
+
+$cd /home/TrollCoin-2.0
+$sudo qmake -qt=qt5 "USE_QRCODE=1" "USE_UPNP=1"
+$sudo make
+
+
+need to have swap usb for wallet not to crash dling blockchain
+
+$sudo apt install gparted
+$sudo gparted
+//gui interface right click devices and create linux-swap
+//click swapon (wont be permanent need to edit fstab)
+
+download vim/nano/txt editor of choice
+$sudo apt-get install vim
+$sudo vim /etc/fstab
+$/dev/[sda1]		swap	swap defaults	0	0          
+//     maybe diff, 
+//     can use UU also with command $blkid
+
+
+
+$cd [Trollcoin dir]
+$./TrollCoin
+//wait approx 2 weeks for wallet to update at the time of writing
 
 
 Build Instructions for Qt5 Linux Wallet (Ubuntu)
