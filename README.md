@@ -1,4 +1,4 @@
-# **TrollCoin (TROLL) Version 2.0.0.0**
+# **TrollCoin (TROLL) Version 2.1.0.0**
 
 TrollCoin Integration/Staging Tree
 ================================
