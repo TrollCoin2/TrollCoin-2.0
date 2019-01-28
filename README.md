@@ -114,6 +114,23 @@ $ make
 
 //end of guide
 
+Build Instructions for Qt5 Linux Wallet (Ubuntu) [MODERN] 
+================================================
+//tested 1/28/2019 on linux mint 19
+
+//same as above except package "libssl-dev" causes a big NUM error. 
+
+$sudo apt-get remove libssl-dev
+//temporarily remove up to date lib
+
+$sudo apt-get install libssl1.0-dev
+//older out of date lib
+
+$sudo make
+
+$sudo apt-get remove libssl1.0-dev
+$sudo apt-get install libssl-dev
+//replace with updated lib and ready to rock and roll
 
 
 Build Instructions for Terminal Based Linux Wallet (Ubuntu)
