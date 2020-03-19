@@ -39,14 +39,64 @@ RPC Port = 17000
 P2P Port = 25000
 RPC Port = 27000
 
-Build Instructions for RaspberryPi 3b(non B+) 
+Build Instructions for Raspberry Pi 4B 
+================================================
+
+//March 18 2020
+//Tested on 4B with 2gb RAM 
+
+SDFormatter - erase micro SD card
+Raspberry Pi Imager - https://www.raspberrypi.org/downloads/
+
+format SD card and run Imager
+Choose Ubunutu 18.04.4 32-bit server OS (others may work but this is stable)
+then write and insert SD card 
+make sure ethernet cord is in and power on pi
+
+terminal:
+//will load then ask for login/pw
+//default is ubuntu/ubuntu
+
+$sudo apt-get update
+$sudo apt-get upgrade //if you get a lock error the OS might automatically be using packmanager
+$sudo apt-get install xubuntu-desktop //or desktop enviroment of your choosing
+$reboot
+
+//can now use wifi
+goto:
+https://github.com/TrollCoin2/TrollCoin-2.0
+click clone/download, download ZIP
+
+$sudo unzip TrollCoin-2.0-master.zip -d [destination]
+
+//Install dependencies via Terminal:
+
+$ sudo apt-get install make libqt5webkit5-dev libqt5gui5 libqt5core5a libqt5dbus5 qttools5-dev qttools5-dev-tools qtcreator libprotobuf-dev protobuf-compiler build-essential libboost-dev libboost-all-dev libboost-system-dev libboost-filesystem-dev libboost-program-options-dev libboost-thread-dev libssl1.0-dev libdb++-dev libstdc++6 libminiupnpc-dev libevent-dev libcurl4-openssl-dev git libpng-dev qrencode libqrencode-dev
+
+//In terminal navigate to the TrollCoin-2.0 folder:
+$qmake -qt=qt5 "USE_QRCODE=1" "USE_UPNP=1"
+$make
+
+//replace with updated lib
+$sudo apt-get remove libssl1.0-dev
+$sudo apt-get install libssl-dev
+
+$cd [Trollcoin dir]
+$./TrollCoin
+
+
+//ready to rock and roll
+
+
+Build Instructions for Raspberry Pi 3B(non B+) 
 ================================================
 
 //Aug 30 2018
 
 SDFormatter - erase micro SD card
-Win32 Disk imager - ubuntu-mate-16.04.2-desktop-armhf version
-insert SD card and power on pi
+(windows) Win32 Disk imager - ubuntu-mate-16.04.2-desktop-armhf version
+
+write and insert SD card and power on pi
 
 
 goto:
@@ -82,7 +132,6 @@ $sudo vim /etc/fstab
 $/dev/[sda1]		swap	swap defaults	0	0          
 //     maybe diff, 
 //     can use UU also with command $blkid
-
 
 
 $cd [Trollcoin dir]
