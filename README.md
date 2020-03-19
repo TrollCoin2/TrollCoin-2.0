@@ -41,49 +41,65 @@ RPC Port = 27000
 
 Build Instructions for Raspberry Pi 4B 
 ================================================
-
-//March 18 2020
+<p>
+//March 18 2020<br />
 //Tested on 4B with 2gb RAM 
+</p>
 
-SDFormatter - erase micro SD card
+<p>
+SDFormatter - erase micro SD card<br />
 Raspberry Pi Imager - https://www.raspberrypi.org/downloads/
+</p>
 
-format SD card and run Imager
-Choose Ubunutu 18.04.4 32-bit server OS (others may work but this is stable)
-then write and insert SD card 
-make sure ethernet cord is in and power on pi
+<p>
+format SD card and run Imager<br />
+Choose Ubunutu 18.04.4 32-bit server OS (others may work but this is stable)<br />
+then write and insert SD card <br />
+make sure ethernet cord is in and power on pi<br />
+</p>
+  
+<p>  
+terminal: <br />
+//will load then ask for login/pw <br />
+//default is ubuntu/ubuntu <br />
+</p>
+  
+<p>  
+$sudo apt-get update <br />
+$sudo apt-get upgrade //if you get a lock error the OS might automatically be using packmanager <br />
+$sudo apt-get install xubuntu-desktop //or desktop enviroment of your choosing <br />
+$reboot <br />
+</p>
 
-terminal:
-//will load then ask for login/pw
-//default is ubuntu/ubuntu
-
-$sudo apt-get update
-$sudo apt-get upgrade //if you get a lock error the OS might automatically be using packmanager
-$sudo apt-get install xubuntu-desktop //or desktop enviroment of your choosing
-$reboot
-
-//can now use wifi
-goto:
-https://github.com/TrollCoin2/TrollCoin-2.0
-click clone/download, download ZIP
+<p>
+//can now use wifi<br />
+goto:<br />
+https://github.com/TrollCoin2/TrollCoin-2.0 click clone/download, download ZIP<br />
+</p>
 
 $sudo unzip TrollCoin-2.0-master.zip -d [destination]
 
 //Install dependencies via Terminal:
 
+<p>
 $ sudo apt-get install make libqt5webkit5-dev libqt5gui5 libqt5core5a libqt5dbus5 qttools5-dev qttools5-dev-tools qtcreator libprotobuf-dev protobuf-compiler build-essential libboost-dev libboost-all-dev libboost-system-dev libboost-filesystem-dev libboost-program-options-dev libboost-thread-dev libssl1.0-dev libdb++-dev libstdc++6 libminiupnpc-dev libevent-dev libcurl4-openssl-dev git libpng-dev qrencode libqrencode-dev
+</p>
+<p>
+//In terminal navigate to the TrollCoin-2.0 folder:<br />
+$qmake -qt=qt5 "USE_QRCODE=1" "USE_UPNP=1"<br /> 
+$make <br />
+</p>
 
-//In terminal navigate to the TrollCoin-2.0 folder:
-$qmake -qt=qt5 "USE_QRCODE=1" "USE_UPNP=1"
-$make
+<p>
+//replace with updated lib <br />
+$sudo apt-get remove libssl1.0-dev <br />
+$sudo apt-get install libssl-dev 
+</p>
 
-//replace with updated lib
-$sudo apt-get remove libssl1.0-dev
-$sudo apt-get install libssl-dev
-
-$cd [Trollcoin dir]
+<p>
+$cd [Trollcoin dir]<br />
 $./TrollCoin
-
+</p>
 
 //ready to rock and roll
 
@@ -93,50 +109,62 @@ Build Instructions for Raspberry Pi 3B(non B+)
 
 //Aug 30 2018
 
-SDFormatter - erase micro SD card
-(windows) Win32 Disk imager - ubuntu-mate-16.04.2-desktop-armhf version
+<p>
+SDFormatter - erase micro SD card<br />
+(windows) Win32 Disk imager - ubuntu-mate-16.04.2-desktop-armhf version<br />
+</p>
 
 write and insert SD card and power on pi
 
+<p>
+goto:<br />
+https://github.com/TrollCoin2/TrollCoin-2.0<br />
+click clone/download, download ZIP<br />
+</p>
 
-goto:
-https://github.com/TrollCoin2/TrollCoin-2.0
-click clone/download, download ZIP
-
-terminal:
-$sudo unzip TrollCoin-2.0-master.zip -d [destination]
-
+<p>
+terminal:<br />
+$sudo unzip TrollCoin-2.0-master.zip -d [destination]<br />
+</p>
 $sudo apt-get update
 
-//if firefox not working
-$sudo apt-get install qupzilla
+<p>
+//if firefox not working<br />
+$sudo apt-get install qupzilla<br />
+</p>
 
 $sudo apt-get install make libqt5webkit5-dev libqt5gui5 libqt5core5a libqt5dbus5 qttools5-dev qttools5-dev-tools qtcreator libprotobuf-dev protobuf-compiler build-essential libboost-dev libboost-all-dev libboost-system-dev libboost-filesystem-dev libboost-program-options-dev libboost-thread-dev libssl-dev libdb++-dev libstdc++6 libminiupnpc-dev libevent-dev libcurl4-openssl-dev git libpng-dev qrencode libqrencode-dev
-//click yes
 
-$cd /home/TrollCoin-2.0
-$sudo qmake -qt=qt5 "USE_QRCODE=1" "USE_UPNP=1"
-$sudo make
-
+<p>
+$cd /home/TrollCoin-2.0<br />
+$sudo qmake -qt=qt5 "USE_QRCODE=1" "USE_UPNP=1"<br />
+$sudo make<br />
+</p>
 
 need to have swap usb for wallet not to crash dling blockchain
 
-$sudo apt install gparted
-$sudo gparted
-//gui interface right click devices and create linux-swap
-//click swapon (wont be permanent need to edit fstab)
+<p>
+$sudo apt install gparted<br />
+$sudo gparted<br />
+//gui interface right click devices and create linux-swap<br />
+//click swapon (wont be permanent need to edit fstab)<br />
+</p>
 
-download vim/nano/txt editor of choice
-$sudo apt-get install vim
-$sudo vim /etc/fstab
-$/dev/[sda1]		swap	swap defaults	0	0          
-//     maybe diff, 
-//     can use UU also with command $blkid
-
-
-$cd [Trollcoin dir]
-$./TrollCoin
-//wait approx 2 weeks for wallet to update at the time of writing
+<p>
+download vim/nano/txt editor of choice<br />
+$sudo apt-get install vim<br />
+$sudo vim /etc/fstab<br />
+$/dev/[sda1]		swap	swap defaults	0	0<br />          
+</p>
+<p>
+//     maybe diff, <br />
+//     can use UU also with command $blkid<br />
+</p>
+<p>
+$cd [Trollcoin dir]<br />
+$./TrollCoin<br />
+//wait approx 2 weeks for wallet to update at the time of writing<br />
+</p>
 
 
 Build Instructions for Qt5 Linux Wallet (Ubuntu)
@@ -168,19 +196,19 @@ Build Instructions for Qt5 Linux Wallet (Ubuntu) [MODERN]
 //tested 1/28/2019 on linux mint 19
 
 //same as above except package "libssl-dev" causes a big NUM error. 
+<p>
+$sudo apt-get remove libssl-dev<br />
+//temporarily remove up to date lib<br />
 
-$sudo apt-get remove libssl-dev
-//temporarily remove up to date lib
+$sudo apt-get install libssl1.0-dev<br />
+//older out of date lib<br />
 
-$sudo apt-get install libssl1.0-dev
-//older out of date lib
+$sudo make<br />
 
-$sudo make
-
-$sudo apt-get remove libssl1.0-dev
-$sudo apt-get install libssl-dev
-//replace with updated lib and ready to rock and roll
-
+$sudo apt-get remove libssl1.0-dev<br />
+$sudo apt-get install libssl-dev<br />
+//replace with updated lib and ready to rock and roll<br />
+</p>
 
 Build Instructions for Terminal Based Linux Wallet (Ubuntu)
 ===========================================================
