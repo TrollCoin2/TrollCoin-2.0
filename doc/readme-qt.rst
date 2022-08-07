@@ -1,5 +1,5 @@
 TrollCoin-qt: Qt5 GUI for TrollCoin
-===============================
+===================================
 
 Build instructions
 ===================
@@ -32,15 +32,97 @@ An executable named `trollcoin-qt` will be built.
 Windows
 --------
 
-Windows build instructions:
+Windows build instructions to build a 64-bit binary. These are compiled natively on Windows,
+not cross-compiled from Linux:
 
-- Download the `QT Windows SDK`_ and install it. You don't need the Symbian stuff, just the desktop Qt.
+- Download and install `msys2`_ and `7zip`_.
+- Open a mingw64 shell (C:/msys64/mingw64.exe) and cd into the trollcoin source directory
+- Run
 
-- Compile openssl, boost and dbcxx.
+::
 
-- Open the .pro file in QT creator and build as normal (ctrl-B)
+    pacman -Syy --noconfirm mingw-w64-x86_64-gcc make patch ruby python
+    wget https://github.com/miurahr/aqtinstall/releases/download/v2.1.0/aqt.exe
+    ./aqt install-tool --outputdir c:/Qt windows desktop tools_mingw qt.tools.win64_mingw810
 
-.. _`QT Windows SDK`: http://qt-project.org/downloads
+
+Build Qt statically
+^^^^^^^^^^^^^^^^^^^^^^
+
+This allows to distribute a single .exe in the end, otherwise many Qt dlls need to be distributed alongside the .exe.
+If this is not required, you can simply install the regular `Qt installer`_ and build with that.
+
+::
+
+    wget https://gist.githubusercontent.com/mrfaptastic/80e909c9a8237994471bce2d17657779/raw/62596d3986b6e655f260efb51a2a9e630cd24a20/qt-windows10-static-build.ps1
+    patch < doc/qt-windows10-static-build.ps1.patch
+    powershell -File qt-windows10-static-build.ps1 -NoPause -QtVersion 5.9.9 -QtSrcUrl https://download.qt.io/archive/qt/5.9/5.9.9/single/qt-everywhere-opensource-src-5.9.9.zip
+
+
+Build dependencies
+^^^^^^^^^^^^^^^^^^
+
+Download the dependencies from the linked URLs, extract the archives and then run the
+commands below in the respective extracted folder.
+
+Build boost (version 1.55.0 https://sourceforge.net/projects/boost/files/boost/1.55.0):
+
+::
+
+    ./bootstrap.sh --with-toolset=mingw --prefix=C:/boost --with-libraries=system,filesystem,program_options,thread,chrono
+    sed -i "s/mingw/gcc/g" project-config.jam
+    ./b2 install
+
+Build libdb (version 5.3.28 https://github.com/berkeleydb/libdb/releases/tag/v5.3.28):
+
+::
+
+    cd build_unix
+    ../dist/configure --prefix=/c/libdb --enable-mingw --enable-cxx
+    make -j
+    make install
+
+Build openssl (version 1.0.2u https://www.openssl.org/source/old/1.0.2/openssl-1.0.2u.tar.gz):
+
+::
+
+    mkdir -p /c/openssl
+    ./Configure --prefix=/c/openssl --openssldir=/c/openssl no-shared --release mingw64
+    make
+    make install
+
+Build miniupnpc (version 2.2.3 http://miniupnp.free.fr/files/download.php?file=miniupnpc-2.2.3.tar.gz):
+
+::
+
+
+    make -f Makefile.mingw
+    mkdir -p /c/miniupnpc/{include/miniupnpc,lib}
+    cp include/* /c/miniupnpc/include/miniupnpc
+    cp *.a /c/miniupnpc/lib
+
+Build qrencode (version 4.1.1 https://fukuchi.org/works/qrencode/qrencode-4.1.1.tar.gz):
+
+::
+
+    ./configure --prefix=/c/qrencode --disable-shared
+    make -j
+    make install
+
+
+Build trollcoin
+^^^^^^^^^^^^^^^
+
+::
+
+    export PATH=/c/Qt/Static/5.9.9/bin:$PATH
+    qmake "USE_UPNP=1" "USE_QRCODE=1" "BOOST_LIB_PATH=C:\boost\lib" "BOOST_LIB_SUFFIX=-mgw121-mt-1_55" "BOOST_INCLUDE_PATH=C:\boost\include\boost-1_55" "OPENSSL_LIB_PATH=C:\openssl\lib" "OPENSSL_INCLUDE_PATH=C:\openssl\include" "BDB_LIB_PATH=C:\libdb\lib" "BDB_INCLUDE_PATH=C:\libdb\include" "MINIUPNPC_LIB_PATH=C:\miniupnpc\lib" "MINIUPNPC_INCLUDE_PATH=C:\miniupnpc\include" "QRENCODE_LIB_PATH=C:\qrencode\lib" "QRENCODE_INCLUDE_PATH=C:\qrencode\include"
+    make
+
+
+.. _`msys2`: https://www.msys2.org/
+.. _`7zip`: https://www.7-zip.org/
+.. _`Qt installer`: https://www.qt.io/download-thank-you?os=windows&hsLang=en
 
 
 Mac OS X
