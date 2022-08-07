@@ -42,6 +42,10 @@ OBJECTS_DIR = build
 MOC_DIR = build
 UI_DIR = build
 
+# Force c++11 standard to workaround boost 1.55 compilation errors with
+# newer compilers.
+QMAKE_CXXFLAGS += -std=c++11
+
 # use: qmake "RELEASE=1"
 contains(RELEASE, 1) {
     macx:QMAKE_CXXFLAGS += -mmacosx-version-min=10.7 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.7.sdk
