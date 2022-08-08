@@ -1,6 +1,6 @@
 TEMPLATE = app
 TARGET = TrollCoin
-VERSION = 2.1.0.0
+VERSION = 2.1.1.0
 
 greaterThan(QT_MAJOR_VERSION, 5) {
     INCLUDEPATH += src src/json src/qt src/qt/plugins/mrichtexteditor
@@ -41,6 +41,10 @@ DEFINES += BOOST_VARIANT_USE_RELAXED_GET_BY_DEFAULT
 OBJECTS_DIR = build
 MOC_DIR = build
 UI_DIR = build
+
+# Force c++11 standard to workaround boost 1.55 compilation errors with
+# newer compilers.
+QMAKE_CXXFLAGS += -std=c++11
 
 # use: qmake "RELEASE=1"
 contains(RELEASE, 1) {

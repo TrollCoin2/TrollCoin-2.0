@@ -1,0 +1,23 @@
+--- qt-windows10-static-build.ps1	2022-06-05 16:07:19.249368051 +0200
++++ qt-windows10-static-build.ps1.bak	2022-06-05 16:10:54.731007279 +0200
+@@ -134,7 +134,10 @@
+     }
+ 
+     # Set a clean path including MinGW.
+-    $env:Path += "$MingwDir\bin;$MingwDir\opt\bin;$env:SystemRoot\system32;$env:SystemRoot;$env:SystemRoot\system32\WindowsPowerShell\v1.0\;"
++    $perlPath = Split-Path -parent (get-command perl).Path
++    $pythonPath = Split-Path -parent (get-command python).Path
++    $rubyPath = Split-Path -parent (get-command ruby).Path
++    $env:Path = "$MingwDir\bin;$MingwDir\opt\bin;$env:SystemRoot\system32;$env:SystemRoot;$env:SystemRoot\system32\WindowsPowerShell\v1.0\;$perlPath;$pythonPath;$rubyPath"
+ 	
+ 	
+     # Check that the 'powershell' command is available
+@@ -155,7 +158,7 @@
+ 
+     # Configure, compile and install Qt.
+     Push-Location $QtSrcDir
+-    cmd /c "configure.bat -static -release -platform win32-g++ -opensource -confirm-license -prefix $QtDir -qt-zlib -qt-libpng -qt-webp -qt-libjpeg -qt-freetype  -no-opengl -skip qt3d -skip qtactiveqt -skip qtandroidextras -skip qtcharts -skip qtconnectivity -skip qtdatavis3d -skip qtdeclarative -skip qtdoc -skip qtgamepad -skip qtlocation -skip qtlottie -skip qtmacextras -skip qtmultimedia -skip qtnetworkauth -skip qtpurchasing -skip qtquick3d -skip qtquickcontrols -skip qtquickcontrols2 -skip qtquicktimeline -skip qtremoteobjects -skip qtscript -skip qtsensors -skip qtspeech -skip qtsvg -skip qtwayland -skip qtwebglplugin -skip qtwebview -skip webengine -make libs -nomake tools -nomake examples -nomake tests"
++    cmd /c "configure.bat -static -release -platform win32-g++ -opensource -confirm-license -prefix $QtDir -qt-zlib -qt-libpng -qt-libjpeg -qt-freetype -no-opengl -skip qt3d -skip qtactiveqt -skip qtandroidextras -skip qtcharts -skip qtconnectivity -skip qtdatavis3d -skip qtdeclarative -skip qtdoc -skip qtgamepad -skip qtlocation -skip qtmacextras -skip qtmultimedia -skip qtnetworkauth -skip qtpurchasing -skip qtquickcontrols -skip qtquickcontrols2 -skip qtremoteobjects -skip qtscript -skip qtsensors -skip qtspeech -skip qtsvg -skip qtwayland -skip qtwebview -skip webengine -make libs -nomake tools -nomake examples -nomake tests"
+     mingw32-make #-k -j4
+     mingw32-make install #-k install
+     Pop-Location
