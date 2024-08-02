@@ -45,20 +45,30 @@ Build Instructions for Qt5 Linux Wallet (Ubuntu)
 ================================================
 //Install dependencies via Terminal:
 
-$ sudo apt-get install make libqt5webkit5-dev libqt5gui5 libqt5core5a libqt5dbus5 qttools5-dev qttools5-dev-tools qtcreator libprotobuf-dev protobuf-compiler build-essential libboost-dev libboost-all-dev libboost-system-dev libboost-filesystem-dev libboost-program-options-dev libboost-thread-dev libssl-dev libdb++-dev libstdc++6 libminiupnpc-dev libevent-dev libcurl4-openssl-dev git libpng-dev qrencode libqrencode-dev
+$ ```
+sudo apt-get install make libqt5webkit5-dev libqt5gui5 libqt5core5a libqt5dbus5 qttools5-dev qttools5-dev-tools qtcreator libprotobuf-dev protobuf-compiler build-essential libboost-dev libboost-all-dev libboost-system-dev libboost-filesystem-dev libboost-program-options-dev libboost-thread-dev libssl-dev libdb++-dev libstdc++6 libminiupnpc-dev libevent-dev libcurl4-openssl-dev git libpng-dev qrencode libqrencode-dev
+```
 
 //In terminal navigate to the TrollCoin-2.0 folder:
 
-$ cd /home/TrollCoin-2.0
+
+```
+cd /home/TrollCoin-2.0
+```
 
 //Then:
 
-$ qmake -qt=qt5 "USE_QRCODE=1" "USE_UPNP=1"
+
+```
+qmake -qt=qt5 "USE_QRCODE=1" "USE_UPNP=1"
+```
 
 //Then:
 
-$ make
 
+```
+make
+```
 //This will compile and build the Qt Wallet which takes a little while, please be patient.
 
 //When finished you will have a file called TrollCoin - Simply Double Click
@@ -71,43 +81,65 @@ Build Instructions for Terminal Based Linux Wallet (Ubuntu)
 ===========================================================
 //Install dependencies via Terminal:
 
-$ sudo apt-get install build-essential libboost-all-dev libssl-dev libcurl4-openssl-dev libminiupnpc-dev libdb++-dev libstdc++6 make 
+
+```
+sudo apt-get install build-essential libboost-all-dev libssl-dev libcurl4-openssl-dev libminiupnpc-dev libdb++-dev libstdc++6 make
+```
 
 //In terminal navigate to the TrollCoin-2.0 folder:
 
-$ cd /home/TrollCoin-2.0/src/
+
+```
+cd /home/TrollCoin-2.0/src/
+```
 
 //Enter into the terminal:
 
-$ make -f makefile.unix USE_UPNP=1
+ 
+```
+make -f makefile.unix USE_UPNP=1
+```
 
 //This will produce a file named trollcoind which is the command line instance of TrollCoin
 
 //Now type:
 
-$ strip trollcoind
+
+```
+strip trollcoind
+```
 
 //When finished you will have a file called trollcoind
 
 //To run TrollCoin
 
-$ ./trollcoind & 
+
+```
+./trollcoind &
+```
 
 //It will complain about having no trollcoin.conf file, we'll edit the one provided and move it into place
 
-$ cd ..
-$ nano trollcoin.conf
+
+```
+cd ..
+nano trollcoin.conf
+```
 
 //Edit the Username and Password fields to anything you choose (but remember them) then save the file
 
-$ mv trollcoin.conf /home/.trollcoin/
-$ cd src/
-$ ./trollcoind &
+ 
+```
+mv trollcoin.conf /home/.trollcoin/
+cd src/
+./trollcoind &
+```
 
 //The server will start. Here are a few commands, google for more.
 
-$ ./trollcoind getinfo
-$ ./trollcoind getmininginfo
-$ ./trollcoind getnewaddresss
-
+```
+./trollcoind getinfo
+./trollcoind getmininginfo
+./trollcoind getnewaddresss
+```
 //end of guide
